@@ -49,6 +49,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../deep_dive.html">Deep Dive</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Functions</span></p>
 <ul>
@@ -59,6 +60,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../functional/ivy/data_type.html">Data type</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../functional/ivy/device.html">Device</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../functional/ivy/elementwise.html">Elementwise</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../functional/ivy/extensions.html">Extensions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../functional/ivy/general.html">General</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../functional/ivy/gradients.html">Gradients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../functional/ivy/layers.html">Layers</a></li>
@@ -77,16 +79,15 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Data Classes</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../data_classes/container.html">Container</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../data_classes/array.html">Array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_classes/container.html">Container</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Framework Classes</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../converters.html">Converters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../sequential.html">Sequential</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../initializers.html">Initializers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../layers.html">Layers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../norms.html">Norms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../activations.html">Activations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module.html">Module</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../optimizers.html">Optimizers</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="Optimizer.html">Optimizer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="SGD.html">SGD</a></li>
@@ -95,8 +96,9 @@
 <li class="toctree-l2"><a class="reference internal" href="LAMB.html">LAMB</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../module.html">Module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../activations.html">Activations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../norms.html">Norms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../layers.html">Layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../initializers.html">Initializers</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Docs</span></p>
 <ul>
@@ -160,7 +162,7 @@ Default is True, provided the backend framework supports it.</p></li>
 <li><p><strong>stop_gradients</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Whether to stop the gradients of the variables after each gradient step. (default: <code class="docutils literal notranslate"><span class="pre">True</span></code>)
 Default is True.</p></li>
 <li><p><strong>compile_on_next_step</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Whether to compile the optimizer on the next step. Default is False. (default: <code class="docutils literal notranslate"><span class="pre">False</span></code>)</p></li>
-<li><p><strong>device</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Device</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeDevice</span></code>]]) – Device on which to create the layer’s variables ‘cuda:0’, ‘cuda:1’, ‘cpu’ (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)
+<li><p><strong>device</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Device</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Device</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">device</span></code>]]) – Device on which to create the layer’s variables ‘cuda:0’, ‘cuda:1’, ‘cpu’ (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)
 etc. (Default value = None)</p></li>
 </ul>
 </dd>
@@ -173,7 +175,7 @@ etc. (Default value = None)</p></li>
 <dd><p>Set state of the optimizer.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>state</strong> (<em>&lt;module 'ivy.container' from '/home/root/project/ivy/container/__init__.py'&gt;</em>) – Nested state to update.</p>
+<dd class="field-odd"><p><strong>state</strong> (<a class="reference internal" href="../../data_classes/container/container/Container.html#ivy.container.container.Container" title="ivy.container.container.Container"><code class="xref py py-class docutils literal notranslate"><span class="pre">Container</span></code></a>) – Nested state to update.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -203,7 +205,7 @@ etc. (Default value = None)</p></li>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2020, Ivy Team.</p>
+    <p>&#169; Copyright 2020-2022, Ivy Team.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
